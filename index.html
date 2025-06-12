@@ -7,10 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Even Darker Grey theme variables */
         :root {
-            --bg-main: #212121; /* Main background - significantly darker grey */
-            --bg-sidebar: #1a1a1a; /* Sidebar background - almost black grey */
+            --bg-main: #212121; /* Main background */
+            --bg-sidebar: #1a1a1a; /* Sidebar background */
             --text-color: #f5f5f5; /* Very light grey text for strong contrast */
             --accent-color: #424242; /* Dark grey accent for hover */
             --accent-hover-color: #5a5a5a; /* Slightly lighter dark grey accent on hover */
@@ -122,6 +121,44 @@
             border-radius: 0.5rem;
         }
 
+        /* Styling for the game buttons (now anchor tags) */
+        .game-button-link {
+            /* Mimic the button styling from your original code */
+            background-color: transparent;
+            color: white;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem; /* Equivalent to py-3 px-6 */
+            border-radius: 0.5rem; /* Equivalent to rounded-lg */
+            transition: all 0.2s ease-in-out; /* duration-200 */
+            transform: scale(1); /* initial transform hover:scale-105 */
+            outline: none;
+            border: 2px solid transparent;
+            text-decoration: none; /* Remove underline for links */
+            display: inline-flex; /* Use flex to center content if needed */
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem; /* Base font size */
+        }
+
+        .game-button-link:hover {
+            transform: scale(1.05);
+            border-color: #6b7280; /* hover:border-gray-500 */
+            color: #d1d5db; /* hover:text-gray-300 */
+        }
+
+        .game-button-link:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #9ca3af, 0 0 0 4px #4b5563; /* focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] */
+        }
+
+        /* Adjustments for different screen sizes for game buttons */
+        @media (min-width: 768px) {
+            .game-button-link {
+                padding: 0.75rem 1.5rem; /* py-3 px-6 for md: */
+                font-size: 1rem; /* md:text-base */
+            }
+        }
+
         /* Responsive adjustments for smaller screens */
         @media (max-width: 768px) {
             body {
@@ -162,7 +199,7 @@
             #games-section .flex.flex-wrap {
                 padding: 0.5rem; /* Add some padding around buttons on small screens */
             }
-            #games-section button {
+            .game-button-link {
                 padding: 0.5rem 1rem; /* Smaller padding for buttons */
                 font-size: 0.875rem; /* Smaller font size for buttons */
             }
@@ -176,6 +213,7 @@
         <a href="index.html" class="sidebar-link" title="Home" data-content="home">
             <i class="fas fa-home"></i>
         </a>
+        <!-- Changed href to # and added data-content="games" to handle internal section switching -->
         <a href="#" class="sidebar-link" title="Games" data-content="games">
             <i class="fas fa-gamepad"></i>
         </a>
@@ -226,37 +264,37 @@
 
         <div id="games-section" class="content-section hidden flex-col items-center justify-center text-center w-full h-full p-4">
             <div class="flex flex-wrap justify-center gap-3 md:gap-4">
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">1v1.LOL</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">2048</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Basketball Random</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Buckshot Roulette</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Crazy Cars</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Crazy Cattle 3D</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">FNAF</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Geometry Dash</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Half-Life</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Minecraft</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Monkey Mart</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Monster Tracks</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Moto X3M 3</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">OvO</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Paper.io 2</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Retro Bowl College</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">SandBoxels</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Sandtris</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Slice it Up</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Slope</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Snow Rider</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Soundboard</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Stickman Hook</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Subway Surfers</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Super Hot</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">The Worlds Hardest Game (TWHN)</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Time Shooter 2</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Time Shooter 3</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">ULTRAKILL</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Undertale</button>
-                <button class="bg-transparent text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none border-2 border-transparent hover:border-gray-500 hover:text-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-[var(--bg-main)] text-sm md:text-base">Wordle</button>
+                <a href="games.html?game=1v1-lol" class="game-button-link">1v1.LOL</a>
+                <a href="games.html?game=2048" class="game-button-link">2048</a>
+                <a href="games.html?game=basketball-random" class="game-button-link">Basketball Random</a>
+                <a href="games.html?game=buckshot-roulette" class="game-button-link">Buckshot Roulette</a>
+                <a href="games.html?game=crazy-cars" class="game-button-link">Crazy Cars</a>
+                <a href="games.html?game=crazy-cattle-3d" class="game-button-link">Crazy Cattle 3D</a>
+                <a href="games.html?game=fnaf" class="game-button-link">FNAF</a>
+                <a href="games.html?game=geometry-dash" class="game-button-link">Geometry Dash</a>
+                <a href="games.html?game=half-life" class="game-button-link">Half-Life</a>
+                <a href="games.html?game=minecraft" class="game-button-link">Minecraft</a>
+                <a href="games.html?game=monkey-mart" class="game-button-link">Monkey Mart</a>
+                <a href="games.html?game=monster-tracks" class="game-button-link">Monster Tracks</a>
+                <a href="games.html?game=moto-x3m-3" class="game-button-link">Moto X3M 3</a>
+                <a href="games.html?game=ovo" class="game-button-link">OvO</a>
+                <a href="games.html?game=paper-io-2" class="game-button-link">Paper.io 2</a>
+                <a href="games.html?game=retro-bowl-college" class="game-button-link">Retro Bowl College</a>
+                <a href="games.html?game=sandboxels" class="game-button-link">SandBoxels</a>
+                <a href="games.html?game=sandtris" class="game-button-link">Sandtris</a>
+                <a href="games.html?game=slice-it-up" class="game-button-link">Slice it Up</a>
+                <a href="games.html?game=slope" class="game-button-link">Slope</a>
+                <a href="games.html?game=snow-rider" class="game-button-link">Snow Rider</a>
+                <a href="games.html?game=soundboard" class="game-button-link">Soundboard</a>
+                <a href="games.html?game=stickman-hook" class="game-button-link">Stickman Hook</a>
+                <a href="games.html?game=subway-surfers" class="game-button-link">Subway Surfers</a>
+                <a href="games.html?game=super-hot" class="game-button-link">Super Hot</a>
+                <a href="games.html?game=the-worlds-hardest-game" class="game-button-link">The Worlds Hardest Game (TWHN)</a>
+                <a href="games.html?game=time-shooter-2" class="game-button-link">Time Shooter 2</a>
+                <a href="games.html?game=time-shooter-3" class="game-button-link">Time Shooter 3</a>
+                <a href="games.html?game=ultrakill" class="game-button-link">ULTRAKILL</a>
+                <a href="games.html?game=undertale" class="game-button-link">Undertale</a>
+                <a href="games.html?game=wordle" class="game-button-link">Wordle</a>
             </div>
         </div>
 
@@ -370,7 +408,7 @@
                 }
 
                 // Handle fade-in
-                if (this.state === 'FADING_IN') {
+                else if (this.state === 'FADING_IN') {
                     this.alpha += this.alphaSpeed * 2; // Faster fade-in
                     if (this.alpha >= 0.2) { // Once it reaches minimum shimmer alpha
                         this.alpha = 0.2; // Clamp to min shimmer alpha
@@ -538,9 +576,12 @@
         // Add event listeners to sidebar links for content switching
         sidebarLinks.forEach(link => {
             link.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent default link behavior
+                event.preventDefault(); // Prevent default link behavior for ALL sidebar links now
                 const contentToShow = this.dataset.content; // Get the data-content attribute value
-                showContent(contentToShow + '-section'); // Append '-section' to match div IDs
+                
+                // If the 'Games' link is clicked, display the games-section on this page.
+                // The individual game links within games-section will then navigate to games.html
+                showContent(contentToShow + '-section'); 
             });
         });
 
@@ -575,7 +616,7 @@
                 // due to X-Frame-Options or Content-Security-Policy headers.
                 // This is a common challenge for "unblocked" sites.
                 contentFrame.src = url;
-                 // Clear srcdoc when loading a new URL via src to ensure placeholder/error messages are removed
+                   // Clear srcdoc when loading a new URL via src to ensure placeholder/error messages are removed
                 contentFrame.removeAttribute('srcdoc');
             } catch (error) {
                 // Catch any potential errors during URL loading (e.g., invalid URL format)
