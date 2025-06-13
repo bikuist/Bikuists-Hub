@@ -307,6 +307,34 @@
     </div>
 
     <script>
+    
+    (function () {
+        const PASSWORD = "pepperonicheesepizza";
+        const STORAGE_KEY = "access_granted";
+        const EXPIRY_KEY = "access_expires";
+
+        const now = Date.now();
+        const saved = localStorage.getItem(STORAGE_KEY);
+        const expiry = localStorage.getItem(EXPIRY_KEY);
+
+        // If no saved access or it's expired
+        if (saved !== "true" || !expiry || now > parseInt(expiry)) {
+          const input = prompt("Enter password to access:");
+
+          if (input === null) {
+            // Cancel was pressed – show blank screen
+            document.documentElement.innerHTML = "";
+          } else if (input === PASSWORD) {
+            localStorage.setItem(STORAGE_KEY, "true");
+            localStorage.setItem(EXPIRY_KEY, (now + 7 * 24 * 60 * 60 * 1000).toString());
+         // Access granted — do nothing
+         } else {
+         // Wrong password — redirect to hub
+            window.location.href = "https://classroom.google.com";
+        }
+    }
+    })();
+
         // Your provided JavaScript for random text
         const randomTexts = [
             "Low-key your new favorite corner of the net.",
