@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bikuist Hub - Unblocked Games</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="key-overlay" style="display: flex; flex-direction: column; align-items: center; justify-content: center; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #0F172A; z-index: 9999; color: #FFFFFF; text-align: center;">
+        <h1 class="font-bubbly homepage-title">Enter Key to Access</h1>
+        <p class="homepage-text">This content is restricted. Please enter the access key.</p>
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <input type="password" id="key-input" placeholder="Enter key here" style="padding: 10px; border: 1px solid #374151; border-radius: 8px; background-color: #1F2937; color: white; width: 250px;">
+            <button id="key-submit-button" style="padding: 10px 20px; background-color: #4299E1; color: white; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s ease;">Submit</button>
+        </div>
+        <p id="key-message" style="color: red; margin-top: 15px;"></p>
+    </div>
+
+    <canvas id="particle-canvas"></canvas>
+
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <span class="logo-text">Bikuist Hub</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home-section" class="nav-link active" data-section="home-section"><i class="fas fa-home"></i></a></li>
+            <li><a href="#games-section" class="nav-link" data-section="games-section"><i class="fas fa-gamepad"></i></a></li>
+            <li><a href="#proxy-section" class="nav-link" data-section="proxy-section"><i class="fas fa-globe"></i></a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <section id="home-section" class="content-section active flex flex-col items-center justify-center text-center">
+            <h1 class="font-bubbly homepage-title">Bikuist Hub</h1>
+            <p id="random-quote" class="text-lg italic max-w-lg mx-auto font-bubbly homepage-text"></p>
+            <p id="current-time" class="text-xl mb-4 font-bubbly homepage-text"></p>
+        </section>
+
+        <section id="games-section" class="content-section flex-col items-center">
+            <h2 class="text-3xl md:text-4xl text-center mb-6 section-title-white">Our Games</h2>
+            <div id="game-cards-container" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4"> 
+            </div>
+        </section>
+
+        <section id="proxy-section" class="content-section flex-col items-center">
+            <h2 class="text-3xl md:text-4xl text-center mb-6 section-title-white">Web Proxy</h2>
+            <div class="proxy-container">
+                <input type="text" id="proxy-input" placeholder="Not Working - Only show">
+                <button id="proxy-button">Go</button>
+            </div>
+            <iframe id="proxy-frame" src="about:blank"></iframe>
+        </section>
+    </main>
+
+    <script src="assets/key.js" defer></script>
+    <script src="assets/games.js" defer></script>
+    <script src="script.js" defer></script>
+</body>
+</html>
