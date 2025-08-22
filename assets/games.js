@@ -82,6 +82,11 @@ const GAMES_MANIFEST = [
         url: "/assets/games/Paper.io 2.html"
     },
     {
+        id: 16.1,
+        name: "Pizza Tower",
+        url: "/assets/games/Pizza Tower.html"
+    },
+    {
         id: 17, 
         name: "Retro Bowl College",
         url: "/assets/games/Retro Bowl College.html"
@@ -160,11 +165,6 @@ const GAMES_MANIFEST = [
         id: 32, 
         name: "Wordle",
         url: "/assets/games/Wordle.html"
-    },
-    {
-        id: 16.1,
-        name: "Pizza Tower",
-        url: "/assets/games/Pizza Tower.html"
     }
 ];
 
@@ -172,6 +172,7 @@ function getGameDataById(id) {
     return GAMES_MANIFEST.find(game => game.id === parseInt(id));
 
 }
+
 
 
 
