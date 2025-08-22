@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     backButton.addEventListener('click', () => {
-        window.location.href = '../index.html#games';
+        window.location.href = '../index.html#games-section';
         setTimeout(() => {
             const targetElement = document.getElementById('games');
             if (targetElement) {
@@ -123,4 +123,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
 
