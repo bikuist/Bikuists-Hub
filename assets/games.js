@@ -162,7 +162,7 @@ const GAMES_MANIFEST = [
         url: "/assets/games/Wordle.html"
     },
     {
-        id: 33,
+        id: 16.1,
         name: "Pizza Tower",
         url: "/assets/games/Pizza Tower.html"
     }
@@ -172,6 +172,7 @@ function getGameDataById(id) {
     return GAMES_MANIFEST.find(game => game.id === parseInt(id));
 
 }
+
 
 
 
