@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileBackButton) {
         mobileBackButton.addEventListener('click', (event) => {
             event.preventDefault();
-            window.location.href = '../index.html#games';
+            window.location.href = '../index.html#games-section';
             setTimeout(() => {
                 const targetElement = document.getElementById('games');
                 if (targetElement) {
@@ -121,4 +121,5 @@ document.addEventListener('DOMContentLoaded', () => {
     favButton.addEventListener('click', () => {
         alert('Favorite button clicked! (Functionality to be implemented)');
     });
+
 });
