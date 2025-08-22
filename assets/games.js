@@ -54,7 +54,7 @@ const GAMES_MANIFEST = [
     {
         id: 11, 
         name: "Minecraft 1.8.8",
-        url: "/assets/games/Minecarft 1.8.8(1).html"
+        url: "/assets/games/Minecraft 1.8.8(1).html"
     },
     {
         id: 12, 
@@ -69,7 +69,7 @@ const GAMES_MANIFEST = [
     {
         id: 14, 
         name: "Moto X3M",
-        url: "/assets/games/Moto X3M.html"
+        url: "/assets/games/Moto X3M 3.html"
     },
     {
         id: 15,
@@ -99,7 +99,7 @@ const GAMES_MANIFEST = [
     {
         id: 20,
         name: "Slice It All",
-        url: "/assets/games/Slice It All.html"
+        url: "/assets/games/Slice it All.html"
     },
     {
         id: 21,
@@ -124,7 +124,7 @@ const GAMES_MANIFEST = [
     {
         id: 25,
         name: "Subway Surfers Houston",
-        url: "/assets/games/Subway Surfers_Houston.html"
+        url: "/assets/games/Subway Surfers_ Houston.html"
     },
     {
         id: 26,
@@ -144,7 +144,7 @@ const GAMES_MANIFEST = [
     {
         id: 29,
         name: "Time Shooter 3 SWAT",
-        url: "/assets/games/Time Shooter 3_SWAT.html"
+        url: "/assets/games/Time Shooter 3_ SWAT.html"
     },
     {
         id: 30, 
@@ -172,5 +172,6 @@ function getGameDataById(id) {
     return GAMES_MANIFEST.find(game => game.id === parseInt(id));
 
 }
+
 
 
