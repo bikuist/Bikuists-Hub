@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             window.location.href = '../index.html#games-section';
             setTimeout(() => {
-                const targetElement = document.getElementById('games');
+                const targetElement = document.getElementById('games-section');
                 if (targetElement) {
                     targetElement.scrollIntoView({ behavior: 'smooth' });
                 }
@@ -123,3 +123,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
