@@ -14,7 +14,7 @@ const GAMES_MANIFEST = [
     {
         id: 3,
         name: "Basket Random",
-        url: "/assets/games/Basketball Random.html"
+        url: "/assets/games/Basket Random.html"
     },
     {
         id: 4, 
@@ -167,3 +167,4 @@ function getGameDataById(id) {
     return GAMES_MANIFEST.find(game => game.id === parseInt(id));
 
 }
+
