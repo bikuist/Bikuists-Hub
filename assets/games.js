@@ -72,6 +72,11 @@ const GAMES_MANIFEST = [
         url: "/assets/games/Moto X3M 3.html"
     },
     {
+        id: "14.1",
+        name: "OMORI (TESTING)",
+        url: "/assets/games/OMORI/index.html"
+    },
+    {
         id: 15,
         name: "OvO",
         url: "/assets/games/OvO.html"
@@ -172,6 +177,7 @@ function getGameDataById(id) {
     return GAMES_MANIFEST.find(game => game.id === parseInt(id));
 
 }
+
 
 
 
