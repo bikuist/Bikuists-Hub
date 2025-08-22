@@ -3,8 +3,8 @@
 const GAMES_MANIFEST = [
     {
         id: 1,
-        name: "1v1.lol",
-        url: "/assets/games/1v1.lol.html"
+        name: "1v1.LoL",
+        url: "/assets/games/1v1.LoL.html"
     },
     {
         id: 2, 
@@ -165,4 +165,5 @@ const GAMES_MANIFEST = [
 
 function getGameDataById(id) {
     return GAMES_MANIFEST.find(game => game.id === parseInt(id));
+
 }
