@@ -169,7 +169,7 @@ const GAMES_MANIFEST = [
     {
         id: "34",
         name: "OMORI",
-        url: "/assets/games/OMORI/index.html"
+        url: "/assets/games/ULTRAKILL.html"
     }
 ];
 
@@ -177,6 +177,7 @@ function getGameDataById(id) {
     return GAMES_MANIFEST.find(game => game.id === parseInt(id));
 
 }
+
 
 
 
