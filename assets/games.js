@@ -167,9 +167,9 @@ const GAMES_MANIFEST = [
         url: "/assets/games/Wordle.html"
     },
     {
-        id: "34",
-        name: "OMORI",
-        url: "/assets/games/ULTRAKILL.html"
+        id: "0.1",
+        name: "OMORk",
+        url: "/assets/games/OMORI/index.html"
     }
 ];
 
