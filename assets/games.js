@@ -7,7 +7,7 @@ const GAMES_MANIFEST = [
         url: "/assets/games/1v1.LoL.html"
     },
     {
-        id: 2, 
+        id: 100, 
         name: "2048",
         url: "/assets/games/2048.html"
     },
@@ -167,8 +167,8 @@ const GAMES_MANIFEST = [
         url: "/assets/games/Wordle.html"
     },
     {
-        id: "0.1",
-        name: "OMORk",
+        id: "2",
+        name: "OMORI",
         url: "/assets/games/OMORI/index.html"
     }
 ];
@@ -177,6 +177,7 @@ function getGameDataById(id) {
     return GAMES_MANIFEST.find(game => game.id === parseInt(id));
 
 }
+
 
 
 
