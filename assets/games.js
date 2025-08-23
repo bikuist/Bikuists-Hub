@@ -167,7 +167,7 @@ const GAMES_MANIFEST = [
         url: "/assets/games/Wordle.html"
     },
     {
-        id: "2",
+        id: "32",
         name: "OMORI",
         url: "/assets/games/OMORI/index.html"
     }
@@ -175,8 +175,9 @@ const GAMES_MANIFEST = [
 
 function getGameDataById(id) {
     return GAMES_MANIFEST.find(game => game.id === parseInt(id));
-
+    
 }
+
 
 
 
