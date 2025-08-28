@@ -7,7 +7,7 @@ const GAMES_MANIFEST = [
         url: "/assets/games/1v1.LoL.html"
     },
     {
-        id: 100, 
+        id: 2, 
         name: "2048",
         url: "/assets/games/2048.html"
     },
@@ -50,6 +50,11 @@ const GAMES_MANIFEST = [
         id: 10,
         name: "Half Life",
         url: "/assets/games/Half Life.html"
+    },
+    {
+      id: 34,
+        name: "Mario VS Luigi",
+        url: "/assets/games/MarioVsLuigi/index.html"
     },
     {
         id: 11, 
@@ -177,6 +182,7 @@ function getGameDataById(id) {
     return GAMES_MANIFEST.find(game => game.id === parseInt(id));
     
 }
+
 
 
 
