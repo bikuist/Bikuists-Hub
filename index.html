@@ -3,61 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bikuist Hub - Unblocked Games</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Bikuist Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-    <div id="key-overlay" style="display: flex; flex-direction: column; align-items: center; justify-content: center; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #0F172A; z-index: 9999; color: #FFFFFF; text-align: center;">
-        <h1 class="font-bubbly homepage-title">Enter Key to Access</h1>
-        <p class="homepage-text">This content is restricted. Please enter the access key.</p>
-        <div style="display: flex; gap: 10px; margin-top: 20px;">
-            <input type="password" id="key-input" placeholder="Enter key here" style="padding: 10px; border: 1px solid #374151; border-radius: 8px; background-color: #1F2937; color: white; width: 250px;">
-            <button id="key-submit-button" style="padding: 10px 20px; background-color: #4299E1; color: white; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s ease;">Submit</button>
+    <div id="key-overlay" class="overlay-container">
+        <div class="overlay-content">
+            <h1 class="page-title">Access Required</h1>
+            <p class="section-description">Please enter the access key to proceed.</p>
+            <div class="input-group">
+                <input type="password" id="key-input" placeholder="Enter key">
+                <button id="key-submit-button" class="btn primary-btn">Submit</button>
+            </div>
+            <p id="key-message" class="error-message"></p>
         </div>
-        <p id="key-message" style="color: red; margin-top: 15px;"></p>
     </div>
 
     <canvas id="particle-canvas"></canvas>
 
-    <nav class="sidebar">
-        <div class="sidebar-header">
-            <span class="logo-text">Bikuist Hub</span>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#home-section" class="nav-link active" data-section="home-section"><i class="fas fa-home"></i></a></li>
-            <li><a href="#games-section" class="nav-link" data-section="games-section"><i class="fas fa-gamepad"></i></a></li>
-            <li><a href="#proxy-section" class="nav-link" data-section="proxy-section"><i class="fas fa-globe"></i></a></li>
-        </ul>
-    </nav>
-
-    <main class="main-content">
-        <section id="home-section" class="content-section active flex flex-col items-center justify-center text-center">
-            <h1 class="font-bubbly homepage-title">Bikuist Hub</h1>
-            <p id="random-quote" class="text-lg italic max-w-lg mx-auto font-bubbly homepage-text"></p>
-            <p id="current-time" class="text-xl mb-4 font-bubbly homepage-text"></p>
-        </section>
-
-        <section id="games-section" class="content-section flex-col items-center">
-            <h2 class="text-3xl md:text-4xl text-center mb-6 section-title-white">Our Games</h2>
-            <div id="game-cards-container" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4"> 
+    <div class="main-layout">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-cloud-bolt"></i>
             </div>
-        </section>
-
-        <section id="proxy-section" class="content-section flex-col items-center">
-            <h2 class="text-3xl md:text-4xl text-center mb-6 section-title-white">Web Proxy</h2>
-            <div class="proxy-container">
-                <input type="text" id="proxy-input" placeholder="Not Working - Only show">
-                <button id="proxy-button">Go</button>
+            <ul class="nav-links">
+                <li><a href="#home-section" class="nav-link active" data-section="home-section"><i class="fa-solid fa-house"></i><span>Home</span></a></li>
+                <li><a href="#games-section" class="nav-link" data-section="games-section"><i class="fa-solid fa-gamepad"></i><span>Games</span></a></li>
+                <li><a href="#apps-section" class="nav-link" data-section="apps-section"><i class="fa-solid fa-cloud"></i><span>Apps</span></a></li>
+                <li><a href="#settings-section" class="nav-link" data-section="settings-section"><i class="fa-solid fa-wrench"></i><span>Settings</span></a></li>
+                <li><a href="#about-section" class="nav-link" data-section="about-section"><i class="fa-solid fa-circle-question"></i><span>About</span></a></li>
+                <li><a href="#search-section" class="nav-link" data-section="search-section"><i class="fa-solid fa-magnifying-glass"></i><span>Search</span></a></li>
+                <li><a href="#calendar-section" class="nav-link" data-section="calendar-section"><i class="fa-solid fa-calendar"></i><span>Calendar</span></a></li>
+                <li><a href="#movies-section" class="nav-link" data-section="movies-section"><i class="fa-solid fa-film"></i><span>Movies</span></a></li>
+                <li><a href="#music-section" class="nav-link" data-section="music-section"><i class="fa-solid fa-music"></i><span>Music</span></a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <button id="panic-toggle" class="btn panic-toggle"><i class="fa-solid fa-bolt"></i></button>
             </div>
-            <iframe id="proxy-frame" src="about:blank"></iframe>
-        </section>
-    </main>
+        </nav>
+
+        <main class="content-area">
+            <section id="home-section" class="content-section active">
+                <h1 class="page-title">Welcome to Bikuist Hub</h1>
+                <p class="section-description" id="random-quote"></p>
+                <div class="utility-display">
+                    <span id="current-time"></span>
+                    <i id="battery-icon" class="fa-solid fa-battery-full"></i>
+                    <span id="battery-level"></span>
+                </div>
+            </section>
+
+            <section id="games-section" class="content-section">
+                <h2 class="section-title">Games</h2>
+                <p class="section-description">A collection of unblocked games for you to enjoy.</p>
+                <div id="game-cards-container" class="game-grid"></div>
+            </section>
+
+            <section id="apps-section" class="content-section">
+                <h2 class="section-title">Proxy</h2>
+                <p class="section-description">Idk Coming soon ig</p>
+            </section>
+
+            <section id="settings-section" class="content-section">
+                <h2 class="section-title">Settings</h2>
+                <p class="section-description">Tbh this shit aint working just a few more days</p>
+                <div class="settings-container">
+                    <div class="setting-group">
+                        <span class="setting-group-title">Tab Settings</span>
+                        <div class="setting-item">
+                            <label for="tab-cloaker" class="settings-label">Tab Cloaker</label>
+                            <input type="text" id="tab-cloak-title-input" placeholder="Custom Title">
+                        </div>
+                        <div class="setting-item">
+                            <label for="tab-cloak-icon-select">Tab Cloak Icon</label>
+                            <select id="tab-cloak-icon-select">
+                                <option value="default">Default</option>
+                                <option value="google-drive">Google Drive</option>
+                                <option value="classroom">Google Classroom</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="setting-group">
+                        <span class="setting-group-title">Panic Button</span>
+                        <div class="setting-item">
+                            <label for="panic-button-key">Panic Button Key</label>
+                            <div class="key-input-group">
+                                <input type="text" id="panic-button-key" placeholder="Press a key..." readonly>
+                                <button class="btn secondary-btn" id="panic-button-set">Set</button>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label for="panic-button-url">Panic Button URL</label>
+                            <input type="text" id="panic-button-url" value="https://google.com">
+                        </div>
+                    </div>
+                    <div class="setting-group">
+                        <span class="setting-group-title">Particle Settings</span>
+                        <div class="setting-item">
+                            <label for="particle-select">Particle Effect</label>
+                            <select id="particle-select">
+                                <option value="off">Off</option>
+                                <option value="particles1">Connecting Lines</option>
+                                <option value="particles2">Just Dots</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about-section" class="content-section">
+                <h2 class="section-title">About</h2>
+                <p class="section-description">This was made by Bikuist And Lumi_f3m Free for anyone with the hopes of having the freedom of playing games with out restrictions</p>
+            </section>
+
+            <section id="search-section" class="content-section">
+                <h2 class="section-title">Ai Chatbot</h2>
+                <p class="section-description">Coming soon</p>
+            </section>
+
+            <section id="calendar-section" class="content-section">
+                <h2 class="section-title">Calendar</h2>
+                <p class="section-description">Shows next big updates to the site</p>
+            </section>
+
+            <section id="movies-section" class="content-section">
+                <h2 class="section-title">Videos</h2>
+                <p class="section-description">Videos Uninterupted</p>
+            </section>
+
+            <section id="music-section" class="content-section">
+                <h2 class="section-title">Music</h2>
+                <p class="section-description">Soon</p>
+            </section>
+        </main>
+    </div>
 
     <script src="assets/key.js" defer></script>
     <script src="assets/games.js" defer></script>
+    <script src="assets/particles.js" defer></script>
     <script src="script.js" defer></script>
 </body>
 </html>
