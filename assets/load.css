@@ -1,8 +1,25 @@
+/* --- Bikuist Hub - Core Styles --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #252540;
+    --text-primary: #ffffff;
+    --text-secondary: #a8a9c4;
+    --accent-blue: #6a82fb;
+    --accent-purple: #fc5c7d;
+    --gradient-main: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+    --shadow-medium: rgba(0, 0, 0, 0.2);
+    --shadow-strong: rgba(0, 0, 0, 0.4);
+    --border-color: #3a3a50;
+}
+
+/* --- Global Styles --- */
 body {
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #0C1A2E;
-    color: #F8FAFC;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,6 +29,7 @@ body {
     position: relative;
 }
 
+/* --- Main Layout --- */
 .main-content-game-loader {
     display: flex;
     flex-direction: column;
@@ -22,6 +40,7 @@ body {
     padding: 20px;
     box-sizing: border-box;
     position: relative;
+    z-index: 10;
 }
 
 .game-layout-container {
@@ -35,19 +54,19 @@ body {
     position: relative;
 }
 
+/* --- Game Preview and Frame --- */
 .game-preview-container {
-    background-color: #0d1525 !important;
+    background-color: var(--bg-secondary);
     border-radius: 12px;
-    padding: 0;
-    position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    box-shadow: 0 5px 20px var(--shadow-strong);
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    position: relative;
 }
 
 #gameFrame {
@@ -59,7 +78,7 @@ body {
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.5s ease;
-    background-color: #0d1525;
+    background-color: var(--bg-secondary);
 }
 
 #gameFrame.loaded {
@@ -67,11 +86,12 @@ body {
     opacity: 1;
 }
 
+/* --- Loading Message --- */
 #loadingMessage {
     position: absolute;
     inset: 0;
-    background-color: rgba(13, 21, 37, 0.92);
-    color: #cbd5e1;
+    background-color: rgba(26, 26, 46, 0.95);
+    color: var(--text-secondary);
     font-size: 1.2rem;
     display: flex;
     flex-direction: column;
@@ -89,23 +109,7 @@ body {
     pointer-events: none;
 }
 
-#loadingMessage i {
-    font-size: 2rem;
-    color: #94a3b8;
-    margin-bottom: 10px;
-}
-
-#loadingMessage p {
-    margin-top: 0.5rem;
-    line-height: 1.5;
-    color: inherit;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
+/* --- Game Controls --- */
 .game-controls {
     position: absolute;
     left: 15px;
@@ -118,9 +122,9 @@ body {
 }
 
 .control-button {
-    background-color: #2D3748;
+    background-color: var(--bg-secondary);
     color: white;
-    border: none;
+    border: 1px solid var(--border-color);
     border-radius: 50%;
     width: 44px;
     height: 44px;
@@ -129,31 +133,36 @@ body {
     justify-content: center;
     font-size: 1.2em;
     cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 6px var(--shadow-medium);
+    transition: all 0.3s ease;
 }
 
 .control-button:hover {
-    background-color: #4A5568;
+    background: var(--gradient-main);
+    border: none; /* Remove border on hover for clean gradient */
+    box-shadow: 0 4px 8px var(--shadow-strong);
 }
 
 .mobile-back-button {
     display: none;
     margin-top: 20px;
-    background-color: #2563EB;
+    background: var(--gradient-main); /* This now has a gradient */
     color: white;
     padding: 10px 20px;
     border-radius: 8px;
     text-decoration: none;
     font-size: 1.1em;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
     flex-shrink: 0;
+    box-shadow: 0 4px 10px var(--shadow-medium);
 }
 
 .mobile-back-button:hover {
-    background-color: #1E40AF;
+    opacity: 0.9;
+    box-shadow: 0 6px 15px var(--shadow-strong);
 }
 
+/* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
     .game-preview-container {
         width: 95%;
