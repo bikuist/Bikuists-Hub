@@ -17,6 +17,11 @@ const GAMES_MANIFEST = [
         url: "/assets/games/Basket Random.html"
     },
     {
+        id: 453655432,
+        name: "Basketball Stars",
+        url: "/assets/games/Basketball Stars.html"
+    },
+    {
         id: 4, 
         name: "Buckshot Roulette",
         url: "/assets/games/Buckshot Roulette.html"
@@ -182,6 +187,7 @@ function getGameDataById(id) {
     return GAMES_MANIFEST.find(game => game.id === parseInt(id));
     
 }
+
 
 
 
