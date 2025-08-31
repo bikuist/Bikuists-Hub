@@ -1,31 +1,61 @@
-// script.js
-
 document.addEventListener('DOMContentLoaded', () => {
+    // --- UI Elements ---
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('.content-section');
     const gameCardsContainer = document.getElementById('game-cards-container');
-    const proxyInput = document.getElementById('proxy-input');
-    const proxyButton = document.getElementById('proxy-button');
-    const proxyFrame = document.getElementById('proxy-frame');
     const currentTimeElement = document.getElementById('current-time');
     const randomQuoteElement = document.getElementById('random-quote');
+    const batteryIcon = document.getElementById('battery-icon');
+    const batteryLevel = document.getElementById('battery-level');
+    const panicToggle = document.getElementById('panic-toggle');
+    const panicButtonKeyInput = document.getElementById('panic-button-key');
+    const panicButtonUrlInput = document.getElementById('panic-button-url');
+    const panicButtonSet = document.getElementById('panic-button-set');
+    const tabCloakTitleInput = document.getElementById('tab-cloak-title-input');
+    const tabCloakIconSelect = document.getElementById('tab-cloak-icon-select');
+    const particleSelect = document.getElementById('particle-select');
+    let panicKey = localStorage.getItem('panicKey') || null;
+    let panicUrl = localStorage.getItem('panicUrl') || 'https://google.com';
 
-    const randomTexts = [
-        "Low-key your new favorite corner of the net.",
-        "Touch grass later — there's games to run.",
-        "Built diff. For gamers, by gamers.",
-        "Just vibes, no paywalls.",
-        "Boot up and zone out. You earned this.",
-        "Skip the mid, we got peak content here.",
-        "Your browser's about to get interesting.",
-        "No cap, this place slaps.",
-        "Lag-free zone. Real ones only.",
-        "Scroll less, play more.",
-        "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-        "Proxy aint working RN sorry",
-        "Made by two idiots with coding knowlage 🙏"
-    ];
+    // --- Key Overlay Logic ---
+    const keyOverlay = document.getElementById('key-overlay');
+    const keyInput = document.getElementById('key-input');
+    const keySubmitBtn = document.getElementById('key-submit-button');
+    const keyMessage = document.getElementById('key-message');
+    const accessKey = '1234'; // Your desired access key
 
+    function checkAccess() {
+        const hasAccess = localStorage.getItem('hasAccess');
+        if (hasAccess === 'true') {
+            keyOverlay.style.display = 'none';
+        } else {
+            keyOverlay.style.display = 'flex';
+        }
+    }
+
+    keySubmitBtn.addEventListener('click', () => {
+        if (keyInput.value === accessKey) {
+            localStorage.setItem('hasAccess', 'true');
+            keyMessage.textContent = 'Access granted!';
+            keyMessage.style.color = 'green';
+            setTimeout(() => {
+                keyOverlay.style.display = 'none';
+            }, 500);
+        } else {
+            keyMessage.textContent = 'Invalid key. Please try again.';
+            keyMessage.style.color = 'red';
+        }
+    });
+
+    keyInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            keySubmitBtn.click();
+        }
+    });
+
+    checkAccess();
+
+    // --- Navigation Logic ---
     function activateSection(sectionId) {
         sections.forEach(section => {
             section.classList.remove('active');
@@ -61,136 +91,168 @@ document.addEventListener('DOMContentLoaded', () => {
         activateSection('home-section');
     }
 
+    // --- Utility Displays (Time & Battery) ---
     function updateTime() {
         const now = new Date();
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-        currentTimeElement.textContent = now.toLocaleDateString(undefined, options);
+        const timeString = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        const dateString = now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        if (currentTimeElement) {
+            currentTimeElement.textContent = `${timeString} on ${dateString}`;
+        }
     }
-    
-  
+    setInterval(updateTime, 1000);
     updateTime();
-    const randomIndex = Math.floor(Math.random() * randomTexts.length);
-    randomQuoteElement.textContent = randomTexts[randomIndex];
-    
 
-    setInterval(updateTime, 1000); 
+    if ('getBattery' in navigator) {
+        navigator.getBattery().then(battery => {
+            function updateBatteryStatus() {
+                const level = Math.round(battery.level * 100);
+                batteryLevel.textContent = `${level}%`;
+                if (battery.charging) {
+                    batteryIcon.className = 'fa-solid fa-battery-full';
+                    batteryIcon.style.color = 'limegreen';
+                } else if (level > 75) {
+                    batteryIcon.className = 'fa-solid fa-battery-full';
+                    batteryIcon.style.color = 'inherit';
+                } else if (level > 50) {
+                    batteryIcon.className = 'fa-solid fa-battery-three-quarters';
+                } else if (level > 25) {
+                    batteryIcon.className = 'fa-solid fa-battery-half';
+                } else {
+                    batteryIcon.className = 'fa-solid fa-battery-quarter';
+                    batteryIcon.style.color = 'orangered';
+                }
+            }
+            updateBatteryStatus();
+            battery.addEventListener('levelchange', updateBatteryStatus);
+            battery.addEventListener('chargingchange', updateBatteryStatus);
+        });
+    } else {
+        if (batteryIcon && batteryLevel) {
+            batteryIcon.style.display = 'none';
+            batteryLevel.textContent = 'Battery info not supported';
+        }
+    }
 
+    // --- Home Screen Features ---
+    const quotes = [
+        "Unblock your creativity.",
+        "Breaking down digital walls.",
+        "Your gateway to the web.",
+        "Explore without limits.",
+        "A portal to new adventures.",
+        "The web, on your terms.",
+    ];
+    if (randomQuoteElement) {
+        randomQuoteElement.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+    }
+
+    // --- Games Section ---
     function renderGameCards() {
         if (typeof GAMES_MANIFEST !== 'undefined' && gameCardsContainer) {
             gameCardsContainer.innerHTML = '';
             GAMES_MANIFEST.forEach(game => {
                 const gameCard = document.createElement('div');
                 gameCard.classList.add('game-card');
-
                 gameCard.innerHTML = `
-                    <div class="game-card-info">
-                        <h3>${game.name}</h3>
-                    </div>
+                    <h3>${game.name}</h3>
                 `;
                 gameCard.addEventListener('click', () => {
                     window.location.href = `assets/load.html?gameId=${game.id}`;
                 });
                 gameCardsContainer.appendChild(gameCard);
             });
-        } else {
-            console.error("GAMES_MANIFEST is not defined or gameCardsContainer not found.");
         }
     }
-
     renderGameCards();
 
-    proxyButton.addEventListener('click', () => {
-        let url = proxyInput.value.trim();
-        if (url) {
-            if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                url = 'https://' + url;
-            }
-            proxyFrame.src = url;
+    // --- Panic Button Settings ---
+    panicButtonKeyInput.value = panicKey ? `Set to: ${panicKey.toUpperCase()}` : 'Press a key...';
+    panicButtonUrlInput.value = panicUrl;
+
+    panicButtonSet.addEventListener('click', () => {
+        panicButtonKeyInput.value = 'Press a key...';
+        panicButtonKeyInput.focus();
+        panicButtonKeyInput.select();
+    });
+
+    panicButtonKeyInput.addEventListener('keydown', (e) => {
+        e.preventDefault();
+        panicKey = e.key.toLowerCase();
+        panicButtonKeyInput.value = `Set to: ${e.key}`;
+        localStorage.setItem('panicKey', panicKey);
+    });
+    
+    panicButtonUrlInput.addEventListener('input', (e) => {
+        panicUrl = e.target.value;
+        localStorage.setItem('panicUrl', panicUrl);
+    });
+    
+    panicToggle.addEventListener('click', () => {
+        window.location.href = panicUrl;
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key.toLowerCase() === panicKey && panicKey !== null) {
+            window.location.href = panicUrl;
         }
     });
 
-    // Particle Animation Logic
-    const canvas = document.getElementById('particle-canvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    const numParticles = 80;
-    const connectionDistance = 120;
+    // --- Tab Cloaking Settings ---
+    const tabIcons = {
+        'default': 'favicon.ico',
+        'google-drive': 'https://ssl.gstatic.com/docs/doclist/images/drive_2022_3_21_0_15_52_630_1603585091.ico',
+        'classroom': 'https://www.gstatic.com/images/icons/material/apps/untracked/classroom_128dp/2x/ic_classroom_48px.png',
+    };
 
-    function setCanvasSize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    setCanvasSize();
-    window.addEventListener('resize', setCanvasSize);
+    function applyCloak() {
+        const storedTitle = localStorage.getItem('tabCloakTitle');
+        const storedIcon = localStorage.getItem('tabCloakIcon');
 
-    class Particle {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2 + 0.5;
-            this.speedX = Math.random() * 0.5 - 0.25;
-            this.speedY = Math.random() * 0.5 - 0.25;
-            this.color = 'rgba(255, 255, 255, 0.6)';
+        const iconLink = document.querySelector("link[rel~='icon']");
+
+        if (storedTitle) {
+            document.title = storedTitle;
+            tabCloakTitleInput.value = storedTitle;
         }
-
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-            if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-            if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-        }
-
-        draw() {
-            ctx.fillStyle = this.color;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
+        if (storedIcon) {
+            iconLink.href = tabIcons[storedIcon] || tabIcons['default'];
+            tabCloakIconSelect.value = storedIcon;
         }
     }
 
-    function initParticlesGradually(delayBetween = 50, total = numParticles) {
-        particles = [];
-        let created = 0;
+    tabCloakTitleInput.addEventListener('input', (e) => {
+        localStorage.setItem('tabCloakTitle', e.target.value);
+        applyCloak();
+    });
+    
+    tabCloakIconSelect.addEventListener('change', (e) => {
+        localStorage.setItem('tabCloakIcon', e.target.value);
+        applyCloak();
+    });
 
-        const interval = setInterval(() => {
-            particles.push(new Particle());
-            created++;
-
-            if (created >= total) {
-                clearInterval(interval);
-            }
-        }, delayBetween);
-    }
-
-
-    function connectParticles() {
-        for (let a = 0; a < particles.length; a++) {
-            for (let b = a; b < particles.length; b++) {
-                const dx = particles[a].x - particles[b].x;
-                const dy = particles[a].y - particles[b].y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < connectionDistance) {
-                    ctx.strokeStyle = `rgba(255, 255, 255, ${1 - (distance / connectionDistance) * 0.8})`;
-                    ctx.lineWidth = 0.5;
-                    ctx.beginPath();
-                    ctx.moveTo(particles[a].x, particles[a].y);
-                    ctx.lineTo(particles[b].x, particles[b].y);
-                    ctx.stroke();
-                }
-            }
+    applyCloak();
+    
+    // --- Particle Settings ---
+    function applyParticles() {
+        const particleType = localStorage.getItem('particleType') || 'particles1';
+        document.body.classList.remove('particles-off', 'particles1', 'particles2');
+        if (particleType === 'off') {
+            document.body.classList.add('particles-off');
+        } else {
+            document.body.classList.add(particleType);
+        }
+        if (particleSelect) {
+            particleSelect.value = particleType;
         }
     }
 
-    function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < particles.length; i++) {
-            particles[i].update();
-            particles[i].draw();
-        }
-        connectParticles();
-        requestAnimationFrame(animateParticles);
+    if (particleSelect) {
+        particleSelect.addEventListener('change', (e) => {
+            localStorage.setItem('particleType', e.target.value);
+            applyParticles();
+        });
     }
 
-    initParticlesGradually(100);
-    animateParticles();
+    applyParticles();
 });
