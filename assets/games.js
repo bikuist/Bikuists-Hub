@@ -7,7 +7,7 @@ const GAMES_MANIFEST = [
         url: "/assets/games/1v1.LoL.html"
     },
     {
-        id: 2, 
+        id: 2,
         name: "2048",
         url: "/assets/games/2048.html"
     },
@@ -18,16 +18,16 @@ const GAMES_MANIFEST = [
     },
     {
         id: 453655432,
-        name: "Basketball Stars",
-        url: "/assets/games/Basketball Stars.html"
+        name: "Basketball Legends",
+        url: "/assets/games/Basketball Legends.html"
     },
     {
-        id: 4, 
+        id: 4,
         name: "Buckshot Roulette",
         url: "/assets/games/Buckshot Roulette.html"
     },
     {
-        id: 5, 
+        id: 5,
         name: "Car Rush",
         url: "/assets/games/Car Rush.html"
     },
@@ -47,7 +47,7 @@ const GAMES_MANIFEST = [
         url: "/assets/games/Five Nights at Freddy's.html"
     },
     {
-        id: 9, 
+        id: 9,
         name: "Geometry Dash Lite",
         url: "/assets/games/Geometry Dash Lite.html"
     },
@@ -57,17 +57,17 @@ const GAMES_MANIFEST = [
         url: "/assets/games/Half Life.html"
     },
     {
-      id: 34,
+        id: 34,
         name: "Mario VS Luigi",
         url: "/assets/games/MarioVsLuigi/index.html"
     },
     {
-        id: 11, 
+        id: 11,
         name: "Minecraft 1.8.8",
         url: "/assets/games/Minecraft 1.8.8(1).html"
     },
     {
-        id: 12, 
+        id: 12,
         name: "Monkey Mart",
         url: "/assets/games/Monkey Mart.html"
     },
@@ -77,7 +77,7 @@ const GAMES_MANIFEST = [
         url: "/assets/games/Monster Tracks.html"
     },
     {
-        id: 14, 
+        id: 14,
         name: "Moto X3M",
         url: "/assets/games/Moto X3M 3.html"
     },
@@ -87,7 +87,7 @@ const GAMES_MANIFEST = [
         url: "/assets/games/OvO.html"
     },
     {
-        id: 16, 
+        id: 16,
         name: "Paper.io 2",
         url: "/assets/games/Paper.io 2.html"
     },
@@ -97,7 +97,7 @@ const GAMES_MANIFEST = [
         url: "/assets/games/Pizza Tower.html"
     },
     {
-        id: 17, 
+        id: 17,
         name: "Retro Bowl College",
         url: "/assets/games/Retro Bowl College.html"
     },
@@ -127,12 +127,12 @@ const GAMES_MANIFEST = [
         url: "/assets/games/Snow Rider 3D.html"
     },
     {
-        id: 23, 
+        id: 23,
         name: "Soundboard",
         url: "/assets/games/Soundboard.html"
     },
     {
-        id: 24, 
+        id: 24,
         name: "Stickman Hook",
         url: "/assets/games/Stickman Hook.html"
     },
@@ -162,7 +162,7 @@ const GAMES_MANIFEST = [
         url: "/assets/games/Time Shooter 3_ SWAT.html"
     },
     {
-        id: 30, 
+        id: 30,
         name: "ULTRAKILL",
         url: "/assets/games/ULTRAKILL.html"
     },
@@ -172,7 +172,7 @@ const GAMES_MANIFEST = [
         url: "/assets/games/Undertale.html"
     },
     {
-        id: 32, 
+        id: 32,
         name: "Wordle",
         url: "/assets/games/Wordle.html"
     },
@@ -185,7 +185,7 @@ const GAMES_MANIFEST = [
 
 function getGameDataById(id) {
     return GAMES_MANIFEST.find(game => game.id === parseInt(id));
-    
+
 }
 
 
